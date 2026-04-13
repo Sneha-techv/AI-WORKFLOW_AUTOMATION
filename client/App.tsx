@@ -1,3 +1,4 @@
+
 import "./global.css";
 
 import { Toaster } from "@/components/ui/toaster";
@@ -11,6 +12,10 @@ import { ProtectedRoute } from "./components/protected-route";
 
 // Pages
 import Landing from "./pages/Landing";
+import Login from "./pages/login";
+import Signup from "./pages/Signup";
+import RoleSelection from "./pages/RoleSelection";
+import EmployeeDashboard from "./pages/EmployeeDashboard";
 import Auth from "./pages/Auth";
 import SelectUser from "./pages/SelectUser";
 import NewCustomer from "./pages/NewCustomer";
@@ -21,6 +26,9 @@ import MyTickets from "./pages/MyTickets";
 import TicketDetails from "./pages/TicketDetails";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+
+// ✅ ATS Dashboard (ADDED)
+import ATSDashboard from "./pages/ATSDashboard";
 
 const queryClient = new QueryClient();
 
@@ -33,18 +41,54 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             {/* Public Routes */}
-            <Route path="/" element={<ProtectedRoute requiredAuth={false}><Landing /></ProtectedRoute>} />
-            <Route path="/auth" element={<ProtectedRoute requiredAuth={false}><Auth /></ProtectedRoute>} />
-            <Route path="/select-user" element={<ProtectedRoute requiredAuth={false}><SelectUser /></ProtectedRoute>} />
-            <Route path="/customer/new" element={<ProtectedRoute requiredAuth={false}><NewCustomer /></ProtectedRoute>} />
-            <Route path="/customer/existing" element={<ProtectedRoute requiredAuth={false}><ExistingCustomer /></ProtectedRoute>} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/role" element={<RoleSelection />} />
+            <Route path="/dashboard" element={<EmployeeDashboard />} />
+            
+            <Route
+              path="/auth"
+              element={
+                <ProtectedRoute requiredAuth={false}>
+                  <Auth />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/select-user"
+              element={
+                <ProtectedRoute requiredAuth={false}>
+                  <SelectUser />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/customer/new"
+              element={
+                <ProtectedRoute requiredAuth={false}>
+                  <NewCustomer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/customer/existing"
+              element={
+                <ProtectedRoute requiredAuth={false}>
+                  <ExistingCustomer />
+                </ProtectedRoute>
+              }
+            />
 
             {/* Protected Routes */}
-            <Route path="/customer/dashboard" element={<ProtectedRoute requiredAuth={true}><Dashboard /></ProtectedRoute>} />
-            <Route path="/customer/create-ticket" element={<ProtectedRoute requiredAuth={true}><CreateTicket /></ProtectedRoute>} />
-            <Route path="/customer/tickets" element={<ProtectedRoute requiredAuth={true}><MyTickets /></ProtectedRoute>} />
-            <Route path="/customer/ticket/:id" element={<ProtectedRoute requiredAuth={true}><TicketDetails /></ProtectedRoute>} />
-            <Route path="/customer/settings" element={<ProtectedRoute requiredAuth={true}><Settings /></ProtectedRoute>} />
+            <Route path="/customer/dashboard" element={<Dashboard />} />
+            <Route path="/customer/create-ticket" element={<CreateTicket />} />
+            <Route path="/customer/tickets" element={<MyTickets />} />
+            <Route path="/customer/ticket/:id" element={<TicketDetails />} />
+            <Route path="/customer/settings" element={<Settings />} />
+
+            {/* ✅ ATS DASHBOARD ROUTE */}
+            <Route path="/ats-dashboard" element={<ATSDashboard />} />
 
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />

@@ -1,8 +1,14 @@
 import { defineConfig } from "vite";
 import path from "node:path";
 
-// Server build configuration
 export default defineConfig({
+  // ✅ ADD THIS PART
+  server: {
+    fs: {
+      allow: [".."], // allow access outside client (important for shared/)
+    },
+  },
+
   build: {
     lib: {
       entry: path.resolve(__dirname, "server/node-build.ts"),
@@ -15,7 +21,6 @@ export default defineConfig({
     ssr: true,
     rollupOptions: {
       external: [
-        // Node.js built-ins
         "fs",
         "path",
         "url",
@@ -29,7 +34,6 @@ export default defineConfig({
         "buffer",
         "querystring",
         "child_process",
-        // External dependencies that should not be bundled
         "express",
         "cors",
       ],
@@ -38,15 +42,17 @@ export default defineConfig({
         entryFileNames: "[name].mjs",
       },
     },
-    minify: false, // Keep readable for debugging
+    minify: false,
     sourcemap: true,
   },
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client"),
       "@shared": path.resolve(__dirname, "./shared"),
     },
   },
+
   define: {
     "process.env.NODE_ENV": '"production"',
   },
