@@ -3,7 +3,12 @@ from backend import models
 from backend.schemas.user_schema import UserCreate
 from datetime import datetime
 import hashlib
-from backend.models import User, Ticket, WorkflowExecution , Notification, TicketMessage , Customer
+from backend.models.user import User
+from backend.models.ticket import Ticket, TicketMessage
+from backend.models.workflow import WorkflowExecution
+from backend.models.notification import Notification
+from backend.models.customer import Customer
+
 from backend.schemas.user_schema import UserUpdate
 from backend.schemas.ticket_schema import TicketCreate
 from fastapi import HTTPException
