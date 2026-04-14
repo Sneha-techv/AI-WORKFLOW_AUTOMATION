@@ -25,3 +25,17 @@ dist-ssr
 
 .config/
 !.env
+
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+venv/
+.env
+
+.pytest_cache/
+.mypy_cache/
+backend/__pycache__/
