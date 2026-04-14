@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://n8n-automation-qt26.onrender.com";
 
 /* ------------------ GENERIC FETCH WITH AUTH ------------------ */
 const fetchWithAuth = async (url: string, options: RequestInit = {}) => {

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://n8n-automation-qt26.onrender.com";
 
 export const auth = {
   async signup(data: any) {
